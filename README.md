@@ -17,6 +17,7 @@ The Dharmic Intelligence Platform is a prototype web application that maps user 
 A little preview before I get to host this ;)
   <img width="1721" height="913" alt="Screenshot 2025-08-13 001718" src="https://github.com/user-attachments/assets/49320c42-8408-4054-92d3-8b0f357fe3ed" />
 
+visit a preview at this -----> https://anishasingh23.github.io/mahabharatInitial/
 
 ## Project Structure
 
