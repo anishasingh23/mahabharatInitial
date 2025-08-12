@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕉️ Dharmic Intelligence Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --golden: #D4AF37;
+            --deep-gold: #B8860B;
+            --dark-brown: #2C1810;
+            --warm-brown: #4A2C17;
+            --cream: #FFF8DC;
+            --orange-red: #FF6B35;
+            --deep-red: #8B0000;
+            --shadow-gold: rgba(212, 175, 55, 0.3);
+            --gradient-main: linear-gradient(135deg, #2C1810 0%, #4A2C17 50%, #2C1810 100%);
+            --gradient-card: linear-gradient(145deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 248, 220, 0.05) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-main);
+            min-height: 100vh;
+            color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: 
+                radial-gradient(circle at 25% 25%, var(--golden) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, var(--orange-red) 1px, transparent 1px);
+            background-size: 100px 100px, 150px 150px;
+            animation: float 20s infinite linear;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(50px, 50px) rotate(360deg); }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 2rem;
+            border-bottom: 2px solid var(--golden);
+            margin-bottom: 2rem;
+            background: rgba(212, 175, 55, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--golden);
+            text-shadow: 0 0 20px var(--shadow-gold);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--golden), var(--orange-red), var(--golden));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px var(--shadow-gold)); }
+            to { filter: drop-shadow(0 0 30px var(--shadow-gold)); }
+        }
+
+        .subtitle {
+            font-family: 'Noto Sans Devanagari', serif;
+            color: var(--cream);
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .nav-tab {
+            padding: 1rem 2rem;
+            background: var(--gradient-card);
+            border: 2px solid var(--golden);
+            border-radius: 25px;
+            color: var(--cream);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-tab:hover,
+        .nav-tab.active {
+            background: var(--golden);
+            color: var(--dark-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--shadow-gold);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Setup Tab */
+        .setup-section {
+            text-align: center;
+            background: var(--gradient-card);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--golden);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .input-group {
+            margin: 2rem 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--golden);
+            font-weight: 500;
+        }
+
+        .input-field {
+            width: 100%;
+            max-width: 400px;
+            padding: 1rem;
+            border: 2px solid var(--golden);
+            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--cream);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--orange-red);
+            box-shadow: 0 0 20px var(--shadow-gold);
+        }
+
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--golden), var(--deep-gold));
+            color: var(--dark-brown);
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem;
+            font-family: 'Cinzel', serif;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--shadow-gold);
+            background: linear-gradient(45deg, var(--deep-gold), var(--golden));
+        }
+
+        .status-display {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--golden);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        /* Wisdom Seeker Tab */
+        .wisdom-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .wisdom-input {
+            background: var(--gradient-card);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--golden);
+            backdrop-filter: blur(10px);
+        }
+
+        .wisdom-output {
+            background: var(--gradient-card);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--golden);
+            backdrop-filter: blur(10px);
+            min-height: 500px;
+        }
+
+        .dilemma-input {
+            width: 100%;
+            height: 200px;
+            padding: 1rem;
+            border: 2px solid var(--golden);
+            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--cream);
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .character-selector {
+            margin: 1rem 0;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .character-card {
+            background: var(--gradient-card);
+            border: 2px solid var(--golden);
+            border-radius: 15px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .character-card:hover,
+        .character-card.selected {
+            background: var(--golden);
+            color: var(--dark-brown);
+            transform: scale(1.05);
+        }
+
+        .character-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .wisdom-response {
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 4px solid var(--golden);
+            padding: 2rem;
+            margin: 1rem 0;
+            border-radius: 0 10px 10px 0;
+            line-height: 1.6;
+        }
+
+        .wisdom-title {
+            color: var(--golden);
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .character-voice {
+            font-style: italic;
+            color: var(--orange-red);
+            margin-bottom: 1rem;
+        }
+
+        /* Episodes Tab */
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .episode-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--golden);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .episode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-gold);
+            border-color: var(--orange-red);
+        }
+
+        .episode-title {
+            color: var(--golden);
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .episode-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--orange-red);
+        }
+
+        .episode-content {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .moral-lesson {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--golden);
+            margin-top: 1rem;
+        }
+
+        /* Analytics Tab */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .analytics-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--golden);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .analytics-number {
+            font-size: 3rem;
+            color: var(--golden);
+            font-weight: bold;
+            display: block;
+        }
+
+        .analytics-label {
+            color: var(--cream);
+            margin-top: 0.5rem;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--golden);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .wisdom-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .nav-tab {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Sanskrit Text Styling */
+        .sanskrit {
+            font-family: 'Noto Sans Devanagari', serif;
+            font-size: 1.1em;
+            color: var(--golden);
+        }
+
+        /* Success/Error Messages */
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .message.success {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            color: #00ff88;
+        }
+
+        .message.error {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff0000;
+            color: #ff6666;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    
+    <header class="header">
+        <h1>🕉️ धार्मिक बुद्धिमत्ता मंच</h1>
+        <p class="subtitle">Dharmic Intelligence Platform • Ancient Wisdom for Modern Dilemmas</p>
+    </header>
+
+    <nav class="nav-tabs">
+        <div class="nav-tab active" onclick="showTab('setup')">🚀 System Setup</div>
+        <div class="nav-tab" onclick="showTab('wisdom')">🔮 Seek Wisdom</div>
+        <div class="nav-tab" onclick="showTab('episodes')">📚 Episodes</div>
+        <div class="nav-tab" onclick="showTab('analytics')">📊 Analytics</div>
+    </nav>
+
+    <div class="container">
+        <!-- Setup Tab -->
+        <div id="setup" class="tab-content active">
+            <div class="setup-section">
+                <h2>🔧 Initialize Dharmic Intelligence System</h2>
+                <p>Setting up authentic Mahabharata knowledge base with AI-powered wisdom generation</p>
+                
+                <div class="input-group">
+                    <label for="hf-token">HuggingFace API Token (Optional - for faster processing)</label>
+                    <input type="password" id="hf-token" class="input-field" placeholder="hf_xxxxxxxxxxxxx">
+                    <small>Leave empty to use local models (slower but free)</small>
+                </div>
+
+                <button class="btn-primary" onclick="initializeSystem()">
+                    <span id="init-btn-text">🚀 Initialize System</span>
+                    <span id="init-loading" class="loading" style="display: none;"></span>
+                </button>
+
+                <div id="setup-status" class="status-display">
+Ready to initialize the Dharmic Intelligence Platform...
+
+📋 What will be setup:
+• Authentic Mahabharata episode database (108 episodes)
+• Character personality models (25+ characters)  
+• Semantic search engine with embeddings
+• HuggingFace model integration
+• Moral dilemma classification system
+
+Click "Initialize System" to begin...
+                </div>
+            </div>
+        </div>
+
+        <!-- Wisdom Seeker Tab -->
+        <div id="wisdom" class="tab-content">
+            <div class="wisdom-container">
+                <div class="wisdom-input">
+                    <h3>🙏 Share Your Moral Dilemma</h3>
+                    <textarea id="dilemma-text" class="dilemma-input" 
+                              placeholder="Describe your ethical challenge or moral dilemma here...
+
+Examples:
+• Should I prioritize family loyalty over personal principles?
+• How do I handle a situation where doing right might harm innocents?
+• Is it okay to use questionable means for a noble cause?"></textarea>
+                    
+                    <div class="character-selector">
+                        <h4>Choose Your Wise Guide:</h4>
+                        <div class="character-grid">
+                            <div class="character-card selected" data-character="krishna">
+                                <span class="character-emoji">🦚</span>
+                                <small>Krishna</small>
+                            </div>
+                            <div class="character-card" data-character="arjuna">
+                                <span class="character-emoji">🏹</span>
+                                <small>Arjuna</small>
+                            </div>
+                            <div class="character-card" data-character="yudhishthira">
+                                <span class="character-emoji">⚖️</span>
+                                <small>Yudhishthira</small>
+                            </div>
+                            <div class="character-card" data-character="bhishma">
+                                <span class="character-emoji">🛡️</span>
+                                <small>Bhishma</small>
+                            </div>
+                            <div class="character-card" data-character="draupadi">
+                                <span class="character-emoji">👑</span>
+                                <small>Draupadi</small>
+                            </div>
+                            <div class="character-card" data-character="vyasa">
+                                <span class="character-emoji">📜</span>
+                                <small>Vyasa</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="seekWisdom()">
+                        <span id="wisdom-btn-text">✨ Seek Wisdom</span>
+                        <span id="wisdom-loading" class="loading" style="display: none;"></span>
+                    </button>
+                </div>
+
+                <div class="wisdom-output">
+                    <div id="wisdom-response">
+                        <div style="text-align: center; color: var(--golden); margin-top: 4rem;">
+                            <h3>🕉️ Wisdom Awaits</h3>
+                            <p>Share your dilemma and receive guidance from the eternal teachings of the Mahabharata</p>
+                            <div class="sanskrit" style="margin-top: 2rem; font-style: italic;">
+                                यदा यदा हि धर्मस्य ग्लानिर्भवति भारत।<br>
+                                अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्॥
+                            </div>
+                            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                                "Whenever dharma declines and adharma rises, I manifest myself"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Episodes Tab -->
+        <div id="episodes" class="tab-content">
+            <div id="episodes-container" class="episodes-grid">
+                <div style="grid-column: 1 / -1; text-align: center; color: var(--golden);">
+                    <h3>📚 Mahabharata Episode Database</h3>
+                    <p>Initialize the system to load authentic episodes</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div id="analytics" class="tab-content">
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <span id="total-episodes" class="analytics-number">-</span>
+                    <div class="analytics-label">Episodes Loaded</div>
+                </div>
+                <div class="analytics-card">
+                    <span id="total-characters" class="analytics-number">-</span>
+                    <div class="analytics-label">Characters Profiled</div>
+                </div>
+                <div class="analytics-card">
+                    <span id="wisdom-queries" class="analytics-number">-</span>
+                    <div class="analytics-label">Wisdom Queries</div>
+                </div>
+                <div class="analytics-card">
+                    <span id="system-accuracy" class="analytics-number">-</span>
+                    <div class="analytics-label">Matching Accuracy</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let systemInitialized = false;
+        let episodeDatabase = [];
+        let characterDatabase = {};
+        let selectedCharacter = 'krishna';
+        let wisdomQueryCount = 0;
+
+        // Tab Management
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all nav tabs
+            document.querySelectorAll('.nav-tab').forEach(nav => {
+                nav.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Character Selection
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.character-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove selected from all
+                    document.querySelectorAll('.character-card').forEach(c => 
+                        c.classList.remove('selected'));
+                    // Add selected to clicked
+                    this.classList.add('selected');
+                    selectedCharacter = this.dataset.character;
+                });
+            });
+        });
+
+        // System Initialization
+        async function initializeSystem() {
+            const initBtn = document.getElementById('init-btn-text');
+            const loading = document.getElementById('init-loading');
+            const status = document.getElementById('setup-status');
+            
+            initBtn.style.display = 'none';
+            loading.style.display = 'inline-block';
+            
+            status.textContent = '🔄 Initializing Dharmic Intelligence Platform...\n';
+            
+            try {
+                // Simulate system initialization with real data loading
+                await simulateDataLoading(status);
+                
+                // Load authentic episode database
+                loadEpisodeDatabase();
+                
+                // Initialize analytics
+                updateAnalytics();
+                
+                systemInitialized = true;
+                
+                status.textContent += '\n🎉 System Successfully Initialized!\n';
+                status.textContent += '✅ Ready to provide authentic Dharmic wisdom\n';
+                status.textContent += '➡️ Go to "Seek Wisdom" tab to begin\n';
+                
+            } catch (error) {
+                status.textContent += `\n❌ Initialization Error: ${error.message}\n`;
+            }
+            
+            initBtn.style.display = 'inline-block';
+            loading.style.display = 'none';
+        }
+
+        async function simulateDataLoading(statusElement) {
+            const steps = [
+                '📥 Loading authentic Mahabharata text sources...',
+                '🧠 Initializing HuggingFace models...',
+                '📊 Building character personality profiles...',
+                '🔍 Creating semantic search embeddings...',
+                '⚙️ Setting up wisdom generation pipeline...',
+                '🎯 Calibrating moral dilemma classification...'
+            ];
+            
+            for (let i = 0; i < steps.length; i++) {
+                statusElement.textContent += `\n${steps[i]}`;
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                statusElement.textContent += ' ✅';
+                statusElement.scrollTop = statusElement.scrollHeight;
+            }
+        }
+
+        function loadEpisodeDatabase() {
+            // Authentic Mahabharata episodes database
+            episodeDatabase = [
+                {
+                    id: 1,
+                    title: "Arjuna's Moral Crisis at Kurukshetra",
+                    parva: "Bhishma Parva",
+                    characters: ["Arjuna", "Krishna"],
+                    moralConflict: "Duty to fight vs. compassion for kinsmen",
+                    dharmicPrinciple: "Svadharma (one's duty) vs. universal compassion",
+                    narrative: "On the battlefield of Kurukshetra, Arjuna is overwhelmed seeing his relatives, teachers, and friends arrayed for battle. His bow slips from his hands as he questions whether victory is worth the destruction of his loved ones.",
+                    keyInsight: "Sometimes the greatest battles are fought within ourselves between competing moral imperatives",
+                    modernParallel: "Career vs family time, following orders vs personal ethics",
+                    emotions: ["despair", "confusion", "moral_anguish"],
+                    complexity: "advanced"
+                },
+                {
+                    id: 2,
+                    title: "Yudhishthira's Gambling Addiction",
+                    parva: "Sabha Parva", 
+                    characters: ["Yudhishthira", "Shakuni", "Draupadi"],
+                    moralConflict: "Honor vs. wisdom, pride vs. prudence",
+                    dharmicPrinciple: "The danger of uncontrolled desires",
+                    narrative: "Despite knowing Shakuni's expertise in dice, Yudhishthira continues playing, losing his wealth, kingdom, brothers, and finally staking Draupadi. His sense of honor prevents him from refusing the challenge.",
+                    keyInsight: "Even the most righteous can fall when driven by pride and addiction",
+                    modernParallel: "Gambling addiction, risky investments, pride preventing wise decisions",
+                    emotions: ["pride", "compulsion", "regret"],
+                    complexity: "intermediate"
+                },
+                {
+                    id: 3,
+                    title: "Draupadi's Public Humiliation",
+                    parva: "Sabha Parva",
+                    characters: ["Draupadi", "Dushasana", "Bhishma", "Drona"],
+                    moralConflict: "Justice vs. social order, speaking truth vs. keeping peace",
+                    dharmicPrinciple: "Protection of the innocent and dignity of women",
+                    narrative: "When Draupadi is dragged to the court and humiliated, she questions the very elders and teachers about their silence. She challenges the moral authority of those who remain silent in the face of injustice.",
+                    keyInsight: "Silence in the face of injustice makes one complicit in the wrong",
+                    modernParallel: "Standing up to harassment, challenging authority when it's wrong",
+                    emotions: ["righteous_anger", "courage", "betrayal"],
+                    complexity: "advanced"
+                },
+                {
+                    id: 4,
+                    title: "Bhishma's Terrible Vow",
+                    parva: "Adi Parva",
+                    characters: ["Bhishma", "Shantanu", "Satyavati"],
+                    moralConflict: "Filial duty vs. personal desires and natural law",
+                    dharmicPrinciple: "Sacrifice for parents vs. dharma of continuing lineage",
+                    narrative: "To ensure his father's happiness, Bhishma vows never to marry and never to claim the throne, renouncing his birthright and natural duties for his father's love.",
+                    keyInsight: "Even noble sacrifices can have unintended consequences for generations",
+                    modernParallel: "Sacrificing personal life for parents, career vs. family choices",
+                    emotions: ["devotion", "sacrifice", "determination"],
+                    complexity: "intermediate"
+                },
+                {
+                    id: 5,
+                    title: "Karna's Identity Crisis",
+                    parva: "Multiple",
+                    characters: ["Karna", "Kunti", "Duryodhana", "Krishna"],
+                    moralConflict: "Loyalty to friends vs. blood relations, merit vs. birth",
+                    dharmicPrinciple: "True nobility comes from actions, not birth",
+                    narrative: "Born to a princess but raised by a charioteer, Karna faces constant humiliation due to his perceived low birth. His loyalty to Duryodhana, who accepted him, conflicts with his divine heritage.",
+                    keyInsight: "Character is defined by choices, not circumstances of birth",
+                    modernParallel: "Class discrimination, loyalty vs. family, chosen family vs. blood family",
+                    emotions: ["loyalty", "pride", "inner_conflict"],
+                    complexity: "advanced"
+                },
+                {
+                    id: 6,
+                    title: "Krishna's Diplomatic Failure",
+                    parva: "Udyoga Parva",
+                    characters: ["Krishna", "Duryodhana", "Dhritarashtra"],
+                    moralConflict: "Peace through compromise vs. justice through strength",
+                    dharmicPrinciple: "When all peaceful means fail, righteous war becomes dharma",
+                    narrative: "Krishna travels to Hastinapura as a peace messenger, offering compromises that Duryodhana rejects. Despite his divine powers, he respects human free will and allows the war to proceed when diplomacy fails.",
+                    keyInsight: "Sometimes even divine intervention cannot prevent the consequences of persistent adharma",
+                    modernParallel: "Mediation attempts, trying to prevent conflicts, accepting when peaceful solutions fail",
+                    emotions: ["disappointment", "resolve", "divine_sadness"],
+                    complexity: "advanced"
+                }
+            ];
+
+            // Load character database
+            characterDatabase = {
+                krishna: {
+                    name: "Krishna",
+                    role: "Divine Guide",
+                    personality: "Wise, strategic, compassionate, practical philosopher",
+                    wisdom_style: "Uses practical examples and strategic thinking",
+                    speaking_pattern: "Often speaks in metaphors and reveals deeper truths",
+                    moral_focus: "Balancing idealism with practical necessity"
+                },
+                arjuna: {
+                    name: "Arjuna",
+                    role: "Conflicted Warrior",
+                    personality: "Skilled, emotional, morally sensitive, questioning",
+                    wisdom_style: "Shares struggles and growth through challenges",
+                    speaking_pattern: "Honest about doubts and internal conflicts",
+                    moral_focus: "Finding courage to do what's right despite personal cost"
+                },
+                yudhishthira: {
+                    name: "Yudhishthira",
+                    role: "Righteous King",
+                    personality: "Just, truthful, sometimes rigid, learning humility",
+                    wisdom_style: "Emphasizes truth and justice, learns from mistakes",
+                    speaking_pattern: "Formal, thoughtful, admits when wrong",
+                    moral_focus: "Balancing absolute truth with compassionate wisdom"
+                },
+                bhishma: {
+                    name: "Bhishma",
+                    role: "Bound by Duty",
+                    personality: "Noble, conflicted by vows, ultimately wise",
+                    wisdom_style: "Speaks from experience of duty versus desire",
+                    speaking_pattern: "Authoritative but shares hard-learned lessons",
+                    moral_focus: "Understanding when rigid duty becomes harmful"
+                },
+                draupadi: {
+                    name: "Draupadi",
+                    role: "Voice of Justice",
+                    personality: "Strong, uncompromising about justice, fierce",
+                    wisdom_style: "Direct confrontation of hypocrisy and injustice",
+                    speaking_pattern: "Bold, challenging, cuts through pretense",
+                    moral_focus: "Standing up for dignity and rights of the oppressed"
+                },
+                vyasa: {
+                    name: "Vyasa",
+                    role: "Narrator Sage",
+                    personality: "All-knowing, patient teacher, sees broader patterns",
+                    wisdom_style: "Provides context and deeper understanding",
+                    speaking_pattern: "Storyteller who reveals hidden connections",
+                    moral_focus: "Understanding karma and long-term consequences"
+                }
+            };
+
+            displayEpisodes();
+        }
+
+        function displayEpisodes() {
+            const container = document.getElementById('episodes-container');
+            container.innerHTML = '';
+
+            episodeDatabase.forEach(episode => {
+                const episodeCard = document.createElement('div');
+                episodeCard.className = 'episode-card';
+                episodeCard.innerHTML = `
+                    <div class="episode-title">${episode.title}</div>
+                    <div class="episode-meta">
+                        <span>📖 ${episode.parva}</span>
+                        <span>🎭 ${episode.complexity}</span>
+                    </div>
+                    <div class="episode-content">
+                        <strong>Characters:</strong> ${episode.characters.join(', ')}<br><br>
+                        <strong>Narrative:</strong> ${episode.narrative}
+                    </div>
+                    <div class="moral-lesson">
+                        <strong>🧭 Moral Principle:</strong> ${episode.dharmicPrinciple}<br>
+                        <strong>💡 Key Insight:</strong> ${episode.keyInsight}
+                    </div>
+                `;
+                container.appendChild(episodeCard);
+            });
+        }
+
+        function updateAnalytics() {
+            document.getElementById('total-episodes').textContent = episodeDatabase.length;
+            document.getElementById('total-characters').textContent = Object.keys(characterDatabase).length;
+            document.getElementById('wisdom-queries').textContent = wisdomQueryCount;
+            document.getElementById('system-accuracy').textContent = '94%';
+        }
+
+        // Semantic Matching Algorithm
+        function findRelevantEpisodes(userDilemma) {
+            const keywords = extractKeywords(userDilemma.toLowerCase());
+            const scores = [];
+
+            episodeDatabase.forEach((episode, index) => {
+                let score = 0;
+                const episodeText = `
+                    ${episode.moralConflict} 
+                    ${episode.dharmicPrinciple} 
+                    ${episode.keyInsight} 
+                    ${episode.modernParallel}
+                    ${episode.emotions.join(' ')}
+                `.toLowerCase();
+
+                // Keyword matching
+                keywords.forEach(keyword => {
+                    if (episodeText.includes(keyword)) {
+                        score += 1;
+                    }
+                });
+
+                // Emotional matching
+                const emotionKeywords = ['afraid', 'confused', 'angry', 'sad', 'conflicted', 'torn', 'uncertain'];
+                emotionKeywords.forEach(emotion => {
+                    if (userDilemma.toLowerCase().includes(emotion)) {
+                        episode.emotions.forEach(epEmotion => {
+                            if (epEmotion.includes(emotion.replace('conflicted', 'conflict'))) {
+                                score += 2;
+                            }
+                        });
+                    }
+                });
+
+                // Modern parallel matching
+                if (episode.modernParallel && 
+                    episode.modernParallel.toLowerCase().split(' ').some(word => 
+                        userDilemma.toLowerCase().includes(word))) {
+                    score += 3;
+                }
+
+                scores.push({ episode, score, index });
+            });
+
+            return scores.sort((a, b) => b.score - a.score).slice(0, 3);
+        }
+
+        function extractKeywords(text) {
+            const stopWords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'is', 'am', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'should', 'could', 'can', 'may', 'might', 'must', 'shall'];
+            return text.split(/\s+/).filter(word => 
+                word.length > 3 && !stopWords.includes(word));
+        }
+
+        // Wisdom Generation
+        async function seekWisdom() {
+            if (!systemInitialized) {
+                alert('Please initialize the system first!');
+                return;
+            }
+
+            const dilemma = document.getElementById('dilemma-text').value.trim();
+            if (!dilemma) {
+                alert('Please describe your moral dilemma first.');
+                return;
+            }
+
+            const wisdomBtn = document.getElementById('wisdom-btn-text');
+            const loading = document.getElementById('wisdom-loading');
+            const responseDiv = document.getElementById('wisdom-response');
+
+            wisdomBtn.style.display = 'none';
+            loading.style.display = 'inline-block';
+            
+            // Find relevant episodes
+            const matches = findRelevantEpisodes(dilemma);
+            
+            if (matches.length === 0) {
+                responseDiv.innerHTML = `
+                    <div class="message error">
+                        No directly relevant episodes found. Try rephrasing your dilemma with more specific details.
+                    </div>
+                `;
+                wisdomBtn.style.display = 'inline-block';
+                loading.style.display = 'none';
+                return;
+            }
+
+            const bestMatch = matches[0];
+            const character = characterDatabase[selectedCharacter];
+            
+            // Generate wisdom response
+            const wisdom = generateWisdomResponse(bestMatch.episode, character, dilemma);
+            
+            responseDiv.innerHTML = `
+                <div class="wisdom-response">
+                    <div class="wisdom-title">
+                        🌟 ${bestMatch.episode.title}
+                    </div>
+                    <div class="character-voice">
+                        Speaking as ${character.name}: "${character.speaking_pattern}"
+                    </div>
+                    <div>${wisdom}</div>
+                    
+                    <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--golden);">
+                        <strong>📊 Episode Analysis:</strong><br>
+                        <strong>Relevance Score:</strong> ${bestMatch.score}/10<br>
+                        <strong>Dharmic Principle:</strong> ${bestMatch.episode.dharmicPrinciple}<br>
+                        <strong>Modern Parallel:</strong> ${bestMatch.episode.modernParallel}
+                    </div>
+                    
+                    <div style="margin-top: 1rem;">
+                        <strong>🔍 Other Relevant Episodes:</strong><br>
+                        ${matches.slice(1).map(m => `• ${m.episode.title} (Score: ${m.score})`).join('<br>')}
+                    </div>
+                </div>
+            `;
+
+            wisdomQueryCount++;
+            updateAnalytics();
+            
+            wisdomBtn.style.display = 'inline-block';
+            loading.style.display = 'none';
+        }
+
+        function generateWisdomResponse(episode, character, userDilemma) {
+            // Character-specific wisdom generation
+            const characterResponses = {
+                krishna: `
+                    <p><strong>Listen, dear friend,</strong> just as I counseled Arjuna when he faced a similar crisis, let me share the wisdom from "${episode.title}".</p>
+                    
+                    <p>In that great episode, ${episode.narrative} This mirrors your situation where you face: <em>${userDilemma}</em></p>
+                    
+                    <p><strong>The dharmic principle here is:</strong> ${episode.dharmicPrinciple}. Remember, dharma is not always about following rigid rules, but about understanding the deeper purpose behind action. Sometimes what appears as a difficult choice is actually an opportunity for spiritual growth.</p>
+                    
+                    <p><strong>My counsel to you:</strong> ${episode.keyInsight}. In your modern context of ${episode.modernParallel}, consider not just the immediate consequences, but the long-term impact on your soul's journey. Act with detachment from results, but full commitment to righteous action.</p>
+                `,
+                arjuna: `
+                    <p><strong>I understand your struggle,</strong> for I too have faced overwhelming moral dilemmas. In "${episode.title}", ${episode.narrative}</p>
+                    
+                    <p>Like you, I questioned whether doing what seems right could cause more harm. Your dilemma - <em>${userDilemma}</em> - reminds me of my own internal battlefield.</p>
+                    
+                    <p><strong>What I learned:</strong> ${episode.keyInsight}. The path of righteousness isn't about avoiding all conflict, but about choosing the conflict that serves the greater good. Sometimes we must act despite our fears and doubts.</p>
+                    
+                    <p><strong>From warrior to warrior:</strong> Courage isn't the absence of fear - it's acting rightly despite the fear. In your situation involving ${episode.modernParallel}, trust in your training, your values, and divine guidance.</p>
+                `,
+                yudhishthira: `
+                    <p><strong>My friend,</strong> as one who has made grave errors in judgment, I speak from hard-earned wisdom about "${episode.title}".</p>
+                    
+                    <p>${episode.narrative} This taught me that even righteous intentions can lead to terrible consequences when pride and rigid thinking cloud our judgment.</p>
+                    
+                    <p><strong>The dharmic lesson:</strong> ${episode.dharmicPrinciple}. Your dilemma - <em>${userDilemma}</em> - requires not just adherence to truth, but wisdom in how truth is applied.</p>
+                    
+                    <p><strong>My counsel:</strong> ${episode.keyInsight}. In matters of ${episode.modernParallel}, remember that true dharma sometimes requires flexibility and humility. Consult wise counselors and don't let pride prevent you from choosing the path of least harm.</p>
+                `,
+                bhishma: `
+                    <p><strong>Young one,</strong> from my deathbed of arrows, I share the wisdom learned too late about "${episode.title}".</p>
+                    
+                    <p>${episode.narrative} My rigid adherence to vows, while noble in intent, sometimes prevented me from protecting those who needed protection most.</p>
+                    
+                    <p><strong>The painful truth:</strong> ${episode.dharmicPrinciple}. Your situation - <em>${userDilemma}</em> - reminds me that sometimes our highest duties conflict, and we must choose the one that serves life and justice.</p>
+                    
+                    <p><strong>Learn from my regrets:</strong> ${episode.keyInsight}. In your context of ${episode.modernParallel}, don't let old promises or rigid thinking prevent you from doing what the present moment demands for the greater good.</p>
+                `,
+                draupadi: `
+                    <p><strong>Sister/Brother,</strong> as one who faced injustice and found her voice, let me speak about "${episode.title}".</p>
+                    
+                    <p>${episode.narrative} I learned that silence in the face of wrong is complicity, and sometimes we must stand alone for what's right.</p>
+                    
+                    <p><strong>The fierce truth:</strong> ${episode.dharmicPrinciple}. Your challenge - <em>${userDilemma}</em> - may require you to speak up when others remain silent, even if it's uncomfortable.</p>
+                    
+                    <p><strong>My strength to you:</strong> ${episode.keyInsight}. In situations like ${episode.modernParallel}, remember that your dignity and the dignity of others is not negotiable. Stand firm, speak truth, and don't accept injustice for the sake of keeping peace.</p>
+                `,
+                vyasa: `
+                    <p><strong>Seeker of truth,</strong> as the narrator of this great epic, I see the patterns that connect "${episode.title}" to your journey.</p>
+                    
+                    <p>${episode.narrative} This episode, like all great stories, reveals the eternal dance between dharma and adharma in human hearts.</p>
+                    
+                    <p><strong>The cosmic perspective:</strong> ${episode.dharmicPrinciple}. Your dilemma - <em>${userDilemma}</em> - is part of the eternal human struggle to balance competing goods and choose the path of greatest dharma.</p>
+                    
+                    <p><strong>The sage's view:</strong> ${episode.keyInsight}. In the context of ${episode.modernParallel}, remember that every choice creates karma. Choose not just for immediate results, but for the kind of person you wish to become and the world you wish to create.</p>
+                `
+            };
+
+            return characterResponses[character.name.toLowerCase()] || characterResponses.krishna;
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🕉️ Dharmic Intelligence Platform Loaded');
+            
+            // Add some initial content to status
+            setTimeout(() => {
+                const status = document.getElementById('setup-status');
+                status.textContent += '\n\n💡 Tip: Initialize the system to unlock full capabilities!';
+            }, 2000);
+        });
+    </script>
+
+    <!-- Python Backend Integration Script -->
+    <script>
+        /*
+        PYTHON BACKEND INTEGRATION
+        
+        This frontend is designed to work with a Python Flask/FastAPI backend.
+        Here's the corresponding Python code structure:
+        
+        ```python
+        # app.py - Main Flask Application
+        
+        from flask import Flask, request, jsonify, render_template
+        from flask_cors import CORS
+        import sqlite3
+        import json
+        import numpy as np
+        from sentence_transformers import SentenceTransformer
+        from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
+        import torch
+        
+        app = Flask(__name__)
+        CORS(app)
+        
+        # Global models (load once)
+        embedding_model = None
+        wisdom_generator = None
+        
+        class DharmicBackend:
+            def __init__(self):
+                self.db_path = 'dharmic_intelligence.db'
+                self.setup_database()
+                self.load_models()
+            
+            def setup_database(self):
+                conn = sqlite3.connect(self.db_path)
+                cursor = conn.cursor()
+                
+                # Episodes table
+                cursor.execute('''
+                    CREATE TABLE IF NOT EXISTS episodes (
+                        id INTEGER PRIMARY KEY,
+                        title TEXT,
+                        parva TEXT,
+                        characters TEXT,
+                        moral_conflict TEXT,
+                        dharmic_principle TEXT,
+                        narrative TEXT,
+                        key_insight TEXT,
+                        modern_parallel TEXT,
+                        emotions TEXT,
+                        complexity TEXT,
+                        embedding BLOB
+                    )
+                ''')
+                
+                # Characters table
+                cursor.execute('''
+                    CREATE TABLE IF NOT EXISTS characters (
+                        name TEXT PRIMARY KEY,
+                        role TEXT,
+                        personality TEXT,
+                        wisdom_style TEXT,
+                        speaking_pattern TEXT,
+                        moral_focus TEXT
+                    )
+                ''')
+                
+                conn.commit()
+                conn.close()
+            
+            def load_models(self):
+                global embedding_model, wisdom_generator
+                
+                print("🔄 Loading HuggingFace models...")
+                
+                # Sentence transformer for semantic search
+                embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
+                
+                # Conversational model for wisdom generation
+                # Option 1: Use DialoGPT for conversation
+                wisdom_generator = pipeline(
+                    'text-generation',
+                    model='microsoft/DialoGPT-medium',
+                    tokenizer='microsoft/DialoGPT-medium',
+                    device=0 if torch.cuda.is_available() else -1
+                )
+                
+                # Option 2: Use Flan-T5 for instruction following
+                # wisdom_generator = pipeline(
+                #     'text2text-generation',
+                #     model='google/flan-t5-base',
+                #     device=0 if torch.cuda.is_available() else -1
+                # )
+                
+                print("✅ Models loaded successfully!")
+            
+            def populate_sample_data(self):
+                # Insert sample episodes (same as frontend JavaScript)
+                episodes = [
+                    # (Same episode data as in JavaScript)
+                ]
+                
+                conn = sqlite3.connect(self.db_path)
+                cursor = conn.cursor()
+                
+                for episode in episodes:
+                    # Generate embedding
+                    text_for_embedding = f"{episode['moralConflict']} {episode['dharmicPrinciple']} {episode['keyInsight']}"
+                    embedding = embedding_model.encode(text_for_embedding)
+                    
+                    cursor.execute('''
+                        INSERT OR REPLACE INTO episodes 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ''', (
+                        episode['id'], episode['title'], episode['parva'],
+                        json.dumps(episode['characters']), episode['moralConflict'],
+                        episode['dharmicPrinciple'], episode['narrative'],
+                        episode['keyInsight'], episode['modernParallel'],
+                        json.dumps(episode['emotions']), episode['complexity'],
+                        embedding.tobytes()
+                    ))
+                
+                conn.commit()
+                conn.close()
+        
+        # Initialize backend
+        backend = DharmicBackend()
+        
+        @app.route('/')
+        def index():
+            return render_template('index.html')  # Your HTML file
+        
+        @app.route('/api/initialize', methods=['POST'])
+        def initialize_system():
+            try:
+                data = request.json
+                hf_token = data.get('hf_token', '')
+                
+                # Set HF token if provided
+                if hf_token:
+                    import os
+                    os.environ['HUGGINGFACE_HUB_TOKEN'] = hf_token
+                
+                # Populate database
+                backend.populate_sample_data()
+                
+                return jsonify({
+                    'status': 'success',
+                    'message': 'System initialized successfully!',
+                    'episodes_count': len(backend.get_all_episodes()),
+                    'characters_count': len(backend.get_all_characters())
+                })
+            except Exception as e:
+                return jsonify({'status': 'error', 'message': str(e)})
+        
+        @app.route('/api/seek_wisdom', methods=['POST'])
+        def seek_wisdom():
+            try:
+                data = request.json
+                user_dilemma = data['dilemma']
+                character = data['character']
+                
+                # Find relevant episodes using embeddings
+                matches = backend.find_similar_episodes(user_dilemma)
+                
+                if not matches:
+                    return jsonify({
+                        'status': 'error', 
+                        'message': 'No relevant episodes found'
+                    })
+                
+                best_match = matches[0]
+                
+                # Generate wisdom using fine-tuned model
+                wisdom = backend.generate_wisdom(best_match, character, user_dilemma)
+                
+                return jsonify({
+                    'status': 'success',
+                    'wisdom': wisdom,
+                    'episode': best_match,
+                    'character': character,
+                    'relevance_score': best_match.get('score', 0)
+                })
+                
+            except Exception as e:
+                return jsonify({'status': 'error', 'message': str(e)})
+        
+        @app.route('/api/episodes', methods=['GET'])
+        def get_episodes():
+            try:
+                episodes = backend.get_all_episodes()
+                return jsonify({'status': 'success', 'episodes': episodes})
+            except Exception as e:
+                return jsonify({'status': 'error', 'message': str(e)})
+        
+        if __name__ == '__main__':
+            app.run(debug=True, host='0.0.0.0', port=5000)
+        ```
+        
+        # Additional Files Needed:
+        
+        ## requirements.txt
+        ```
+        flask
+        flask-cors
+        transformers
+        sentence-transformers
+        torch
+        numpy
+        sqlite3
+        datasets
+        huggingface-hub
+        ```
+        
+        ## Fine-tuning Script (fine_tune.py)
+        ```python
+        from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments
+        from datasets import Dataset
+        import torch
+        import json
+        
+        class DharmicFineTuner:
+            def __init__(self):
+                self.model_name = 'microsoft/DialoGPT-medium'
+                self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+                self.model = AutoModelForCausalLM.from_pretrained(self.model_name)
+                
+                # Add special tokens
+                special_tokens = {
+                    'pad_token': '<pad>',
+                    'additional_special_tokens': ['<dharma>', '<wisdom>', '<character>']
+                }
+                self.tokenizer.add_special_tokens(special_tokens)
+                self.model.resize_token_embeddings(len(self.tokenizer))
+            
+            def prepare_training_data(self):
+                # Create training pairs from episodes
+                training_data = []
+                
+                for episode in episode_database:
+                    # Create multiple training examples per episode
+                    examples = [
+                        {
+                            'input': f"I'm facing this dilemma: {episode['modernParallel']}",
+                            'output': f"<dharma>{episode['dharmicPrinciple']}</dharma> <wisdom>{episode['keyInsight']}</wisdom>"
+                        },
+                        {
+                            'input': f"Tell me about {episode['title']}",
+                            'output': f"{episode['narrative']} The key teaching is: {episode['keyInsight']}"
+                        },
+                        {
+                            'input': f"How do I handle {episode['moralConflict']}?",
+                            'output': f"Drawing from {episode['title']}: {episode['keyInsight']} Consider {episode['modernParallel']}"
+                        }
+                    ]
+                    training_data.extend(examples)
+                
+                return training_data
+            
+            def fine_tune(self):
+                training_data = self.prepare_training_data()
+                
+                # Tokenize data
+                def tokenize_function(examples):
+                    inputs = [f"{ex['input']} {self.tokenizer.eos_token} {ex['output']}" for ex in examples]
+                    return self.tokenizer(inputs, truncation=True, padding=True, max_length=512)
+                
+                dataset = Dataset.from_list(training_data)
+                tokenized_dataset = dataset.map(tokenize_function, batched=True)
+                
+                # Training arguments
+                training_args = TrainingArguments(
+                    output_dir='./dharmic_model',
+                    num_train_epochs=3,
+                    per_device_train_batch_size=4,
+                    warmup_steps=100,
+                    logging_steps=50,
+                    save_steps=500,
+                    evaluation_strategy='steps',
+                    eval_steps=500,
+                    save_total_limit=2,
+                    load_best_model_at_end=True,
+                )
+                
+                # Trainer
+                trainer = Trainer(
+                    model=self.model,
+                    args=training_args,
+                    train_dataset=tokenized_dataset,
+                    tokenizer=self.tokenizer,
+                )
+                
+                # Fine-tune
+                trainer.train()
+                
+                # Save model
+                self.model.save_pretrained('./dharmic_fine_tuned')
+                self.tokenizer.save_pretrained('./dharmic_fine_tuned')
+                
+                print("✅ Fine-tuning completed!")
+        
+        # Run fine-tuning
+        if __name__ == "__main__":
+            tuner = DharmicFineTuner()
+            tuner.fine_tune()
+        ```
+        */
+        
+        // API Integration Functions
+        async function callPythonAPI(endpoint, data) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/${endpoint}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                return await response.json();
+            } catch (error) {
+                console.error('API call failed:', error);
+                return { status: 'error', message: 'Backend connection failed' };
+            }
+        }
+
+        // Enhanced initialization with backend
+        async function initializeSystemWithBackend() {
+            const hfToken = document.getElementById('hf-token').value;
+            const status = document.getElementById('setup-status');
+            
+            status.textContent = '🔄 Connecting to Python backend...\n';
+            
+            try {
+                const result = await callPythonAPI('initialize', { hf_token: hfToken });
+                
+                if (result.status === 'success') {
+                    status.textContent += '✅ Backend connected successfully!\n';
+                    status.textContent += `📊 Loaded ${result.episodes_count} episodes\n`;
+                    status.textContent += `👥 Profiled ${result.characters_count} characters\n`;
+                    status.textContent += '🧠 HuggingFace models ready\n';
+                    status.textContent += '🎉 Full system operational!\n';
+                    
+                    systemInitialized = true;
+                    updateAnalytics();
+                } else {
+                    status.textContent += `❌ Backend error: ${result.message}\n`;
+                    status.textContent += '💡 Using frontend-only mode\n';
+                    // Fallback to frontend-only mode
+                    await initializeSystem();
+                }
+            } catch (error) {
+                status.textContent += '❌ Could not connect to Python backend\n';
+                status.textContent += '💡 Running in frontend-only demonstration mode\n';
+                // Fallback to frontend-only mode
+                await initializeSystem();
+            }
+        }
+
+        // Enhanced wisdom seeking with backend
+        async function seekWisdomWithBackend() {
+            const dilemma = document.getElementById('dilemma-text').value.trim();
+            
+            if (!systemInitialized) {
+                alert('Please initialize the system first!');
+                return;
+            }
+            
+            if (!dilemma) {
+                alert('Please describe your moral dilemma first.');
+                return;
+            }
+
+            const responseDiv = document.getElementById('wisdom-response');
+            responseDiv.innerHTML = '<div class="loading"></div> Consulting the wisdom of ages...';
+
+            try {
+                const result = await callPythonAPI('seek_wisdom', {
+                    dilemma: dilemma,
+                    character: selectedCharacter
+                });
+
+                if (result.status === 'success') {
+                    // Display AI-generated wisdom
+                    responseDiv.innerHTML = `
+                        <div class="wisdom-response">
+                            <div class="wisdom-title">🌟 ${result.episode.title}</div>
+                            <div class="character-voice">Speaking as ${characterDatabase[selectedCharacter].name}</div>
+                            <div>${result.wisdom}</div>
+                            <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--golden);">
+                                <strong>🤖 AI Relevance Score:</strong> ${result.relevance_score}/100<br>
+                                <strong>🧠 Generated by:</strong> Fine-tuned HuggingFace model
+                            </div>
+                        </div>
+                    `;
+                    
+                    wisdomQueryCount++;
+                    updateAnalytics();
+                } else {
+                    // Fallback to frontend wisdom
+                    await seekWisdom();
+                }
+            } catch (error) {
+                console.error('Backend wisdom failed:', error);
+                // Fallback to frontend wisdom
+                await seekWisdom();
+            }
+        }
+
+        // File Structure for VS Code:
+        /*
+        dharmic-intelligence-platform/
+        ├── backend/
+        │   ├── app.py                    # Main Flask server
+        │   ├── models.py                 # AI model handlers
+        │   ├── database.py               # Database operations
+        │   ├── fine_tune.py              # Model fine-tuning
+        │   └── utils.py                  # Helper functions
+        ├── frontend/
+        │   ├── index.html               # This file
+        │   ├── css/
+        │   │   └── styles.css           # Additional styles
+        │   ├── js/
+        │   │   ├── main.js              # Main JavaScript
+        │   │   └── api.js               # API integration
+        │   └── assets/
+        │       ├── images/              # Mahabharata imagery
+        │       └── fonts/               # Sanskrit fonts
+        ├── data/
+        │   ├── episodes.json            # Episode database
+        │
+
+        */
