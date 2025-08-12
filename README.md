@@ -90,11 +90,8 @@ Contributions welcome! If you can make it faster, wiser, or more entertaining, o
 
 ## Disclaimer
 
-This project is for educational and interpretive purposes only. It does not provide official moral, legal, or spiritual advice — although it might occasionally sound like your grandmother giving life lessons.
+This project is for educational and interpretive purposes only. It does not provide official moral, legal, or spiritual advice — although it might occasionally sound like your relatives giving life lessons.
 
-## License
-
-[Add your chosen license here]
 
 ## Acknowledgments
 
