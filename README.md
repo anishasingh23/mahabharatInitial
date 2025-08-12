@@ -1,6 +1,6 @@
 # Dharmic Intelligence Platform
 
-**Tagline:** Where epic wisdom meets modern moral dilemmas.
+Where epic wisdom meets modern moral dilemmas.
 
 ## Overview
 
