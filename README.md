@@ -4,7 +4,7 @@
 
 ## Overview
 
-The Dharmic Intelligence Platform is a prototype web application that maps user moral dilemmas to passages from the Mahābhārata, uses semantic search to retrieve relevant contexts, and adapts narrative-driven responses to the user's age, education level, and cultural framing. It is **not** here to tell you what to do. It's here to make you pause, think, and possibly imagine what Bhishma might have said — but without the long lectures (well… mostly).
+The Dharmic Intelligence Platform is a prototype web application that maps user moral dilemmas to passages from the Mahābhārata, uses semantic search to retrieve relevant contexts, and adapts narrative-driven responses to the user's age, education level, and cultural framing. It is **not** here to tell you what to do. It's here to make you pause, think, and possibly imagine what Bhishma might have said, but without the long lectures (well… mostly).
 
 ## Features
 
